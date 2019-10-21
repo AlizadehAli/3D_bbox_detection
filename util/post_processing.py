@@ -25,6 +25,7 @@ def init_points3D(dims):
 
 
 def solve_least_squre(W,y):
+    W = W.astype(float)
     U, Sigma, VT = np.linalg.svd(W)
     result = np.dot(np.dot(np.dot(VT.T, np.linalg.pinv(np.eye(4, 3) * Sigma)), U.T), y)
     return result
