@@ -16,15 +16,15 @@ minimizer = Adam(lr=1e-5)
 
 early_stop = EarlyStopping(monitor='val_loss', min_delta=0.001, patience=10, mode='min', verbose=1)
 checkpoint = ModelCheckpoint('weights.hdf5', monitor='val_loss', verbose=1, save_best_only=True, mode='min', period=1)
-tensorboard = TensorBoard(log_dir='../logs/', histogram_freq=0, write_graph=True, write_images=False)
+tensorboard = TensorBoard(log_dir='./logs/', histogram_freq=0, write_graph=True, write_images=False)
 
 model.compile(optimizer=minimizer,#minimizer,
               loss={'dimension': 'mean_squared_error', 'orientation': orientation_loss, 'confidence': 'categorical_crossentropy'},
                   loss_weights={'dimension': 2., 'orientation': 1., 'confidence': 4.})
 
 
-label_dir = 'F:/dataset/kitti/training/label_2/'
-image_dir = 'F:/dataset/kitti/training/image_2/'
+label_dir = '/media/aalizade/45452010-d8f3-40fb-9d1b-9f6bf2c0ae38/kitti_2d_leftColor_label/label_2/'
+image_dir = '/media/aalizade/45452010-d8f3-40fb-9d1b-9f6bf2c0ae38/kitti_2d_leftColor_images/training/image_2/'
 
 
 classes = [line.strip() for line in open(r'dataset/voc_labels.txt').readlines()]

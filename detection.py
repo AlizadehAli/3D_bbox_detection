@@ -13,9 +13,9 @@ model = bbox_3D_net((224,224,3))
 
 model.load_weights(r'model_saved/weights.h5')
 
-image_dir = 'F:/dataset/kitti/testing/image_2/'
-calib_file = 'F:/dataset/kitti/testing/calib.txt'
-box2d_dir = 'F:/dataset/kitti/testing/label_2/'
+image_dir = '/media/aalizade/45452010-d8f3-40fb-9d1b-9f6bf2c0ae38/kitti_2d_leftColor_images/training/image_2/'
+calib_file = '/media/aalizade/45452010-d8f3-40fb-9d1b-9f6bf2c0ae38/kitti_2d_leftColor_calib/training/calib/'
+box2d_dir = '/media/aalizade/45452010-d8f3-40fb-9d1b-9f6bf2c0ae38/kitti_2d_leftColor_label/label_2/'
 
 classes = ['Car','Van','Truck','Pedestrian','Person_sitting','Cyclist','Tram']
 cls_to_ind = {cls:i for i,cls in enumerate(classes)}
@@ -26,17 +26,18 @@ dims_avg = np.loadtxt(r'dataset/voc_dims.txt',delimiter=',')
 all_image = sorted(os.listdir(image_dir))
 # np.random.shuffle(all_image)
 
-cam_to_img = get_cam_data(calib_file)
-fx = cam_to_img[0][0]
-u0 = cam_to_img[0][2]
-v0 = cam_to_img[1][2]
-
 for f in all_image:
+    cam_to_img = get_cam_data(calib_file + f.replace('png', 'txt'))
+    fx = cam_to_img[0][0]
+    u0 = cam_to_img[0][2]
+    v0 = cam_to_img[1][2]
     image_file = image_dir + f
     box2d_file = box2d_dir + f.replace('png', 'txt')
-
+    print(40*'f')
+    print(f)
     img = cv2.imread(image_file)
-
+    print(40 * 'bb')
+    print(box2d_file)
     dect2D_data,box2d_reserved = get_dect2D_data(box2d_file,classes)
 
     for data in dect2D_data:
