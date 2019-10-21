@@ -23,8 +23,8 @@ model.compile(optimizer=minimizer,#minimizer,
                   loss_weights={'dimension': 2., 'orientation': 1., 'confidence': 4.})
 
 
-label_dir = '/media/aalizade/45452010-d8f3-40fb-9d1b-9f6bf2c0ae38/kitti_2d_leftColor_label/label_2/'
-image_dir = '/media/aalizade/45452010-d8f3-40fb-9d1b-9f6bf2c0ae38/kitti_2d_leftColor_images/training/image_2/'
+label_dir = '/raid/users/aalizade/data/Kitti/kitti_2d_leftColor_images/training/image_2'
+image_dir = '/raid/users/aalizade/data/Kitti/kitti_2d_leftColor_label/label_2'
 
 
 classes = [line.strip() for line in open(r'dataset/voc_labels.txt').readlines()]
